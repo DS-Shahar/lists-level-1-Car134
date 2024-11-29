@@ -13,15 +13,15 @@ public class Node<T> {
   }
 
   public T getValue() {
-    return this.value;
+    return value;
   }
 
   public Node<T> getNext() {
-    return this.next;
+    return next;
   }
 
   public boolean hasNext() {
-    return (this.next != null);
+    return (next != null);
   }
 
   public void setValue(T value) {
@@ -31,8 +31,22 @@ public class Node<T> {
   public void setNext(Node<T> next) {
     this.next = next;
   }
-
+ 
   public String toString() {
-    return value + " ==> " + next;
+    return value + " --> " + next;
+  }
+  public Node delNode(Node<Integer>h, int x) {
+	  Node p=new Node<Integer>(-1,h);
+	  h=p;
+	  while(p.hasNext()) {
+		  if(p.getNext().getValue() == x) {
+			  Node<Integer> t = p.getNext();
+			  p.setNext(p.getNext().getNext());
+			  t.setNext(null);
+			  return h.getNext();
+		  }
+		  p=p.getNext();
+	  }
+	  return h.getNext();
   }
 }
